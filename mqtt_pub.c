@@ -30,6 +30,7 @@ int main(){
 	int rc;
 	struct mosquitto * mosq;
 	char payload[SIZE];
+	char topic[255];
 
 	/* fill the sample message */
 	memset(payload, '-', SIZE);
@@ -73,7 +74,8 @@ int main(){
 
 	for (int i=0; i<MAX; i++) {
 		if (DEBUG) printf("pub %d len %ld\n", i, strlen(payload));
-		mosquitto_publish(mosq, NULL, "test/t1", strlen(payload), payload, QOS, false);
+		sprintf(topic, "test/t1/%d", i);
+		mosquitto_publish(mosq, NULL, topic, strlen(payload), payload, QOS, false);
 	}
 
 	mosquitto_publish_callback_set(mosq, my_publish_callback);
