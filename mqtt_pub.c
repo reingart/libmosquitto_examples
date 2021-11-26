@@ -13,14 +13,16 @@ time_t start;
 #define MAX 200000
 #define INFLIGHT 1000
 #define SIZE 1024
+#define DEBUG false;
 
 
 void my_publish_callback(struct mosquitto *mosq, void *obj, int mid)
 {
-    time_t elapsed = time(NULL) - start;
-    count++;
-    if (!(count % 100))
-	printf("Published %d %ld m/s \n", count, count/elapsed);
+	time_t elapsed = time(NULL) - start;
+	count++;
+	if (!(count % 100)) {
+		printf("Published %d %ld m/s \n", count, count/elapsed);
+	}
 }
 
 
@@ -70,7 +72,7 @@ int main(){
 	start = time(NULL);
 
 	for (int i=0; i<MAX; i++) {
-		printf("pub %d len %ld\n", i, strlen(payload));
+		if (DEBUG) printf("pub %d len %ld\n", i, strlen(payload));
 		mosquitto_publish(mosq, NULL, "test/t1", strlen(payload), payload, QOS, false);
 	}
 
@@ -83,7 +85,7 @@ int main(){
 	mosquitto_loop_stop(mosq, true);
 */
 	while (count < MAX) {
-		printf(".");
+		if (DEBUG) printf(".");
 		mosquitto_loop(mosq, 1, INFLIGHT*10);
 	}
 	printf("Elapsed: %ld sec \n", time(NULL) - start);
