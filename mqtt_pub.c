@@ -20,7 +20,7 @@ void my_publish_callback(struct mosquitto *mosq, void *obj, int mid)
 {
 	time_t elapsed = time(NULL) - start;
 	count++;
-	if (!(count % 100)) {
+	if (!(count % 100) && (elapsed > 0)) {
 		printf("Published %d %ld m/s \n", count, count/elapsed);
 	}
 }
