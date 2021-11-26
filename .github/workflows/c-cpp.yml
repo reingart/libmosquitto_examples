@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: install deps
-      run: apt install gcc mosquitto mosquitto-clients libmosquitto-dev
+      run: sudo apt-get install gcc mosquitto mosquitto-clients libmosquitto-dev
     - name: make
       run: make
     - name: test
