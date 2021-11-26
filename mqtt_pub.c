@@ -13,7 +13,7 @@ time_t start;
 #define MAX 200000
 #define INFLIGHT 1000
 #define SIZE 1024
-#define DEBUG false;
+#define DEBUG false
 
 
 void my_publish_callback(struct mosquitto *mosq, void *obj, int mid)
