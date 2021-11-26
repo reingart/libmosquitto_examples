@@ -22,7 +22,7 @@ jobs:
     - name: make
       run: make
     - name: subscriber log
-      run: mosquitto_sub -t '#' -F '%I %t %m %l' > /tmp/msg_log.txt &
+      run: mosquitto_sub -t '#' -q 2 -F '%I %t %m %l' > /tmp/msg_log.txt &
     - name: test 1
       run: ./mqtt_pub
     - name: test 2
