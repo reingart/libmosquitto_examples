@@ -1,0 +1,21 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install deps
+      run: apt install gcc mosquitto mosquitto-clients libmosquitto-dev
+    - name: make
+      run: make
+    - name: test
+      run: ./mqtt_pub
