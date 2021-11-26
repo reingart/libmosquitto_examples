@@ -17,5 +17,16 @@ jobs:
       run: sudo apt-get install gcc mosquitto mosquitto-clients libmosquitto-dev
     - name: make
       run: make
-    - name: test
+    - name: subscriber log
+      run: mosquitto_sub -t '#' -v > /tmp/msg_log.txt &
+    - name: test 1
       run: ./mqtt_pub
+    - name: test 2
+      run: ./mqtt_pub
+    - name: test 3
+      run: ./mqtt_pub
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: subscriber_log.txt
+        path: /tmp/msg_log.txt
