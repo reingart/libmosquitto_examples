@@ -38,7 +38,7 @@ int main(){
 	mosq = mosquitto_new("publisher-test", true, NULL);
 
 	rc = mosquitto_int_option(mosq, MQTT_PROTOCOL_V311, 0);
-	rc = mosquitto_int_option(mosq, MOSQ_OPT_TCP_NODELAY, 1);
+/*	rc = mosquitto_int_option(mosq, MOSQ_OPT_TCP_NODELAY, 1); */
 	rc = mosquitto_int_option(mosq, MOSQ_OPT_PROTOCOL_VERSION, MQTT_PROTOCOL_V5);
 	if(rc != 0){
 		printf("Client could not set protocol version Error Code: %d\n", rc);
