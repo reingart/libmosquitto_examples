@@ -29,6 +29,8 @@ jobs:
       run: ./mqtt_pub
     - name: test 3
       run: ./mqtt_pub
+    - name: wait the subscriber
+      run: sleep 10
 
     - uses: actions/upload-artifact@v2
       with:
