@@ -30,7 +30,7 @@ jobs:
     - name: test 3
       run: ./mqtt_pub
     - name: wait the subscriber
-      run: sleep 10
+      run: while ! wc -l /tmp/msg_log.txt  | grep 600000 ; do sleep 1 ; done
 
     - uses: actions/upload-artifact@v2
       with:
